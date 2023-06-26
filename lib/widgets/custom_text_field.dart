@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, required this.label});
+  const CustomTextField({
+    super.key,
+    required this.label,
+    required this.isPassword,
+
+  });
 
   final String label;
+  final bool isPassword;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 35,
       child: TextField(
+        onSubmitted: ,
+        obscureText: isPassword ? true : false,
         decoration: InputDecoration(
           contentPadding:
               const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
@@ -22,14 +31,7 @@ class CustomTextField extends StatelessWidget {
           ),
           labelText: label,
         ),
-        // Add TextEditingController to manage the entered value
         controller: TextEditingController(),
-        // Add form validation
-        // validator: (value) {
-        //   // Perform validation and return error message if invalid
-        //   return 'Invalid $label';
-        // },
-        // Enable/disable auto-focus, auto-capitalization, etc., based on requirements
       ),
     );
   }
