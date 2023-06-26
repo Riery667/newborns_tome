@@ -48,6 +48,8 @@ class _AnimatedLoginPasswordState extends State<AnimatedLoginPassword>
 
   @override
   Widget build(BuildContext context) {
+    late String name;
+    late String password;
     return RepaintBoundary(
       child: Center(
         child: FadeTransition(
@@ -59,12 +61,14 @@ class _AnimatedLoginPasswordState extends State<AnimatedLoginPassword>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const CustomTextField(
+                  isPassword: false,
                   label: "Username",
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 const CustomTextField(
+                  isPassword: true,
                   label: "Password",
                 ),
                 const SizedBox(

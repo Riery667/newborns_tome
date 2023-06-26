@@ -19,6 +19,7 @@ class _HoverTextState extends State<HoverText> {
     const hoverColor = Colors.grey;
 
     return MouseRegion(
+      cursor: SystemMouseCursors.click,
       onEnter: (_) {
         setState(() {
           _isHovered = true;
