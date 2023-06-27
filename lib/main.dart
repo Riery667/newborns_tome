@@ -5,6 +5,7 @@ import 'package:newborns_tome/screens/home_page.dart';
 import 'package:newborns_tome/screens/library_page.dart';
 import 'package:newborns_tome/screens/login_page.dart';
 import 'package:newborns_tome/screens/wish_list_page.dart';
+import 'package:newborns_tome/utils/firebase_auth_service.dart';
 import 'package:newborns_tome/utils/newborns_theme.dart';
 
 Future<void> main() async {

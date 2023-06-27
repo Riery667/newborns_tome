@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newborns_tome/widgets/hover_text.dart';
 
+import '../utils/firebase_auth_service.dart';
 import 'custom_text_field.dart';
 
 class AnimatedLoginPassword extends StatefulWidget {
@@ -14,6 +15,10 @@ class _AnimatedLoginPasswordState extends State<AnimatedLoginPassword>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _opacityAnimation;
+
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final FirebaseAuthService _userAuth = FirebaseAuthService();
 
   @override
   void initState() {
@@ -46,10 +51,29 @@ class _AnimatedLoginPasswordState extends State<AnimatedLoginPassword>
     super.dispose();
   }
 
+  Future<void> _login() async {
+    final String username = _usernameController.text.trim();
+    final String password = _passwordController.text.trim();
+
+    // Perform the login verification
+    if (username.isNotEmpty && password.isNotEmpty) {
+      final String? userId =
+          await FirebaseAuthService().loginUser(username, password);
+      if (userId != null) {
+        // Login successful, do something
+        print('Login successful! User ID: $userId');
+      } else {
+        // Login failed, handle error
+        print('Login failed! Invalid credentials');
+      }
+    } else {
+      // Handle empty username or password
+      print('Please enter username and password');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    late String name;
-    late String password;
     return RepaintBoundary(
       child: Center(
         child: FadeTransition(
@@ -60,16 +84,18 @@ class _AnimatedLoginPasswordState extends State<AnimatedLoginPassword>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const CustomTextField(
+                CustomTextField(
                   isPassword: false,
                   label: "Username",
+                  controller: _usernameController,
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                const CustomTextField(
+                CustomTextField(
                   isPassword: true,
                   label: "Password",
+                  controller: _passwordController,
                 ),
                 const SizedBox(
                   height: 20,
@@ -78,7 +104,9 @@ class _AnimatedLoginPasswordState extends State<AnimatedLoginPassword>
                   height: 35,
                   width: 120,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      await _login();
+                    },
                     child: Text(
                       'LOGIN',
                       style: Theme.of(context).textTheme.titleMedium,

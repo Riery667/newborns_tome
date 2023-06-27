@@ -6,6 +6,8 @@ import 'package:newborns_tome/widgets/animated_line.dart';
 import 'package:newborns_tome/widgets/animated_login_password.dart';
 import 'package:newborns_tome/widgets/animated_text.dart';
 
+import '../utils/firebase_auth_service.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -16,7 +18,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<Alignment> _animationImage;
+  // late Animation<Alignment> _animationImage;
   late Animation<Offset> _animationTextBottom;
   late Animation<Offset> _animationTextTop;
 
@@ -31,19 +33,19 @@ class _LoginPageState extends State<LoginPage>
       vsync: this,
     );
 
-    _animationImage = Tween<Alignment>(
-      begin: const Alignment(0.5, 0),
-      end: Alignment.centerRight,
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(
-          0.0,
-          0.8,
-          curve: Curves.easeInOut,
-        ),
-      ),
-    );
+    // _animationImage = Tween<Alignment>(
+    //   begin: const Alignment(0.5, 0),
+    //   end: Alignment.centerRight,
+    // ).animate(
+    //   CurvedAnimation(
+    //     parent: _controller,
+    //     curve: const Interval(
+    //       0.0,
+    //       0.8,
+    //       curve: Curves.easeInOut,
+    //     ),
+    //   ),
+    // );
 
     _animationTextBottom = Tween<Offset>(
       begin: const Offset(0.0, 1.0),
