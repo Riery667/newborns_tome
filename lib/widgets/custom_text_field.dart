@@ -5,7 +5,6 @@ class CustomTextField extends StatelessWidget {
     super.key,
     required this.label,
     required this.isPassword,
-
   });
 
   final String label;
@@ -16,7 +15,6 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       height: 35,
       child: TextField(
-        onSubmitted: ,
         obscureText: isPassword ? true : false,
         decoration: InputDecoration(
           contentPadding:
